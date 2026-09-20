@@ -90,6 +90,10 @@ Weitere Screenshots (Kartenansicht, Fehlerfall + Retry): Ordner [`screenshots/`]
 |---|---|
 | <img width="369" alt="Bildschirmfoto 2026-09-20 um 03 37 40 Kopie" src="https://github.com/user-attachments/assets/a8f03ef4-40b7-4ca8-898e-75ea47a9b80a" /> | ![MATCH + visuell erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.21.20.png) |
 
+| **Ausgangsmaterial – Foto ohne Briefkasten (Negativtest):** | **Negativtest – OSM UND visuelle Erkennung stimmen korrekt überein (kein Briefkasten):** |
+|---|---|
+| ![Foto ohne Briefkasten](screenshots/Bildschirmfoto%202026-09-20%20um%2003.37.50.png) | ![MISSING + nicht erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.22.17.png) |
+
 **Ausgangsmaterial – echtes Foto eines Briefkastens (Datenbasis für Training & Test):**
 <img width="369" height="795" alt="Bildschirmfoto 2026-09-20 um 03 37 40 Kopie" src="https://github.com/user-attachments/assets/a8f03ef4-40b7-4ca8-898e-75ea47a9b80a" />
 
