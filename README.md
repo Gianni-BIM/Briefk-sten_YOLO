@@ -24,14 +24,16 @@ Android-App, die vor Ort fotografierte Briefkästen (`amenity=post_box`) automat
 
 ## Funktionsweise
 
-```mermaid
 flowchart LR
     A["Foto + GPS<br/>vor Ort"] --> B[("SQLite")]
     B --> C["Overpass API<br/>OSM-Abgleich"]
     B --> D["YOLO On-Device<br/>Bilderkennung"]
     C --> E["MATCH / MISSING<br/>/ ERROR"]
     D --> F["erkannt / nicht<br/>erkannt / Fehler"]
-```
+    E --> G{"MISSING und<br/>erkannt?"}
+    F --> G
+    G -->|Ja| H["Echte Lücke:<br/>OSM ergänzen"]
+    G -->|Nein| I["Dokumentiert,<br/>keine Aktion"]
 
 Beide Prüfungen laufen unabhängig; **MISSING + visuell erkannt** = eine mit Foto belegte, echte Kartierungslücke.
 
