@@ -70,6 +70,32 @@ https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
 
 Weitere Screenshots (Kartenansicht, Fehlerfall + Retry): Ordner [`screenshots/`](screenshots/).
 
+## Projektablauf mit Screenshots
+
+**Roboflow – manuelle Bounding-Box-Annotation eines Briefkastens im Kandidaten-Foto:**
+![Roboflow Annotation](screenshots/Bildschirmfoto%202026-09-19%20um%2022.18.04.png)
+
+**Roboflow – Übersicht des annotierten Datensatzes (114 von 821 Fotos mit Bounding Boxes):**
+![Roboflow Datensatz-Übersicht](screenshots/Bildschirmfoto%202026-09-19%20um%2022.54.32.png)
+
+**Roboflow – automatischer Train/Valid/Test-Split (70/20/10) vor dem Export:**
+![Roboflow Train/Valid/Test Split](screenshots/Bildschirmfoto%202026-09-19%20um%2022.54.47.png)
+
+**Google Colab – YOLOv8-Training (Ultralytics) und Export nach TensorFlow Lite** (API-Key im Screenshot geschwärzt):
+![Google Colab Training](screenshots/Bildschirmfoto%202026-09-19%20um%2023.24.56.png)
+
+**Ausgangsmaterial – echtes Foto eines Briefkastens (Datenbasis für Training & Test):**
+![Echtes Briefkasten-Foto](screenshots/Bildschirmfoto%202026-09-20%20um%2003.37.40.png)
+
+**Erfolgreicher Testfall – OSM-Treffer UND visuelle KI-Erkennung stimmen überein (98,7 % Konfidenz):**
+![MATCH + visuell erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.21.20.png)
+
+**Vergleich zweier Testfälle nebeneinander – MATCH (grün) vs. MISSING + nicht erkannt (rot), inkl. GPS-Steuerung im Emulator:**
+![Vergleich zweier Testfälle](screenshots/Bildschirmfoto%202026-09-20%20um%2004.22.40.png)
+
+
+Alle weiteren Screenshots (inkl. Kartenansicht, Fehlerfall mit Retry-Funktion) liegen im Ordner [`screenshots/`](screenshots/).
+
 ## Ausführbare APK
 
 Fertig kompilierte Debug-APK zum Installieren: [GitHub Release](https://github.com/Gianni-BIM/Briefk-sten_YOLO/releases) (nicht im Repo selbst, da > 50 MB).
