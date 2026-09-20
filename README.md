@@ -23,7 +23,9 @@ Beide Prüfungen laufen unabhängig; **MISSING + visuell erkannt** = eine mit Fo
 <video src="https://github.com/Gianni-BIM/Briefk-sten_YOLO/releases/download/v1.0/BriefkastenScout-Demo.mp4" controls width="360"></video>
 
 
-Uploading App-Demo(1).mov…
+
+https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
+
 
 
 
