@@ -21,6 +21,43 @@ In Session 1 des Moduls wurde gefragt: *"Wie viele Sitzbänke gibt es in der OSM
 3. Ein selbst trainiertes **YOLO-Modell** läuft direkt auf dem Gerät (TensorFlow Lite) und prüft unabhängig davon, ob auf dem Foto tatsächlich ein Briefkasten zu sehen ist.
 4. Die aussagekräftigste Kombination – **MISSING + visuell bestätigt** – markiert eine mit Foto belegte, echte Kartierungslücke in OSM.
 
+## Projektskizze
+
+Das Experiment gliedert sich in drei Phasen, die jeweils möglichst automatisiert/KI-gestützt umgesetzt wurden: (1) eine automatisierte Trainingsdaten-Pipeline, die ohne eigenes Vor-Ort-Fotografieren Kandidatenbilder für das Objekterkennungsmodell beschafft, (2) die eigentliche Android-App, die Foto-Aufnahme, OSM-Abgleich und On-Device-Bilderkennung zu einer Live-Prüfung zusammenführt, und (3) ein Ausblick, wie das trainierte Modell auch losgelöst von einer einzelnen Vor-Ort-Aufnahme flächendeckend auf bereits vorhandene Streetview-Fotos angewendet werden kann.
+
+```mermaid
+flowchart TD
+    subgraph P1["Phase 1 – Trainingsdaten-Pipeline (automatisiert)"]
+        A1["Overpass API:<br/>bekannte Briefkästen in OSM"] --> A2["Mapillary API:<br/>Streetview-Fotos in der Nähe"]
+        A2 --> A3["Filter: Blickrichtung +<br/>360°-Panorama-Ausschluss"]
+        A3 --> A4["Roboflow:<br/>Bounding-Box-Annotation"]
+        A4 --> A5["Google Colab + Ultralytics YOLO:<br/>Modelltraining"]
+        A5 --> A6["Export:<br/>TensorFlow-Lite-Modell"]
+    end
+
+    subgraph P2["Phase 2 – Android-App 'Briefkasten Scout' (Laufzeit)"]
+        B1["Foto + GPS<br/>vor Ort aufnehmen"] --> B2["SQLite:<br/>Datensatz speichern"]
+        B2 --> B3["Overpass-Check<br/>(GPS-Position)"]
+        B2 --> B4["On-Device YOLO-Check<br/>(Bildinhalt)"]
+        B3 --> B5["MATCH / MISSING / ERROR"]
+        B4 --> B6["erkannt / nicht erkannt / Fehler"]
+    end
+
+    subgraph P3["Phase 3 – Anwendung im großen Maßstab (Machbarkeitsnachweis)"]
+        C1["city_scan.py:<br/>Mapillary-Raster über Berlin"] --> C2["YOLO-Modell auf<br/>jedes Foto anwenden"]
+        C2 --> C3["Overpass-Gegencheck<br/>je Treffer"]
+        C3 --> C4["Kandidatenliste:<br/>mögliche OSM-Lücken"]
+    end
+
+    A6 -.->|trainiertes Modell| B4
+    A6 -.->|trainiertes Modell| C2
+
+    B5 --> D{"MISSING und<br/>visuell erkannt?"}
+    B6 --> D
+    D -->|Ja| E["Echte Kartierungslücke:<br/>manueller OSM-Beitrag möglich"]
+    D -->|Nein| F["Dokumentiert,<br/>keine weitere Aktion"]
+```
+
 ## Die KI-gestützte, automatisierte Prozesskette
 
 Der Schwerpunkt dieses Experiments lag bewusst auf der **Automatisierung des gesamten Entwicklungs- und Datenprozesses mittels KI-Werkzeugen** statt manueller Handarbeit:
