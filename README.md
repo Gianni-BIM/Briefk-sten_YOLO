@@ -26,15 +26,15 @@ Android-App, die vor Ort fotografierte Briefkästen (`amenity=post_box`) automat
 
 ```mermaid
 flowchart LR
-    A["Foto + GPS<br/>vor Ort"] --> B[("SQLite")]
-    B --> C["Overpass API<br/>OSM-Abgleich"]
-    B --> D["YOLO On-Device<br/>Bilderkennung"]
-    C --> E["MATCH / MISSING<br/>/ ERROR"]
-    D --> F["erkannt / nicht<br/>erkannt / Fehler"]
-    E --> G{"MISSING und<br/>erkannt?"}
+    A["Foto + GPS vor Ort"] --> B["SQLite speichern"]
+    B --> C["Overpass API: OSM-Abgleich"]
+    B --> D["YOLO On-Device: Bilderkennung"]
+    C --> E["MATCH / MISSING / ERROR"]
+    D --> F["erkannt / nicht erkannt / Fehler"]
+    E --> G{"MISSING und erkannt?"}
     F --> G
-    G -->|Ja| H["Echte Lücke:<br/>OSM ergänzen"]
-    G -->|Nein| I["Dokumentiert,<br/>keine Aktion"]
+    G -->|Ja| H["Echte Lücke: OSM ergänzen"]
+    G -->|Nein| I["Dokumentiert, keine Aktion"]
 ```
 
 ## Die KI-gestützte, automatisierte Prozesskette
