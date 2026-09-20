@@ -32,9 +32,12 @@ python3 bootstrap.py
 python3 filter_by_bearing.py        # optional, Standard-Toleranz ±60°
 ```
 
-Voraussetzung: `mapillary_token.txt` enthält einen gültigen Mapillary
-Access Token (siehe [mapillary.com/developer](https://www.mapillary.com/developer)).
-**Nicht committen / teilen** – der Token ist an den Account gebunden.
+Voraussetzung: Eigenen kostenlosen Mapillary Access Token unter
+[mapillary.com/developer](https://www.mapillary.com/developer) erstellen,
+`mapillary_token.txt.example` zu `mapillary_token.txt` kopieren und den
+eigenen Token eintragen. **Nicht committen / teilen** – der Token ist an
+den jeweiligen Account gebunden (`mapillary_token.txt` ist deshalb in
+`.gitignore` eingetragen).
 
 ## Output-Struktur
 

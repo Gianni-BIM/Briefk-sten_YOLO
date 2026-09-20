@@ -19,16 +19,16 @@ Erweiterung der CourtScout-App um eine automatische Hintergrundprüfung gegen di
 ## Geplante Änderungen
 
 ### 1. Datenmodell & Datenbank
-- **[MODIFY] [CourtRecord.java](file:///Users/ioannissvolos/Desktop/Master/Automatisierte%20Geodatenprozessierung/Projekt/CourtScout/app/src/main/java/org/courtscout/model/CourtRecord.java)**
+- **[MODIFY] CourtRecord.java**
   - Konstanten definieren: `STATUS_PENDING = "PENDING"`, `STATUS_MATCH = "MATCH"`, `STATUS_MISSING = "MISSING"`, `STATUS_ERROR = "ERROR"`
   - Felder: `String osmStatus`, `String osmId`, `Double osmDistance`, `String osmErrorMessage`
   - Hilfsmethoden: `isOsmMatched()`, `isOsmMissing()`, `isOsmError()`, `isOsmPending()`
-- **[MODIFY] [CourtDbHelper.java](file:///Users/ioannissvolos/Desktop/Master/Automatisierte%20Geodatenprozessierung/Projekt/CourtScout/app/src/main/java/org/courtscout/db/CourtDbHelper.java)**
+- **[MODIFY] CourtDbHelper.java**
   - Schema-Upgrade auf Version 2: Hinzufügen von `osm_status`, `osm_id`, `osm_distance`, `osm_error`
   - Methoden `updateOsmStatus(long id, String status, String osmId, Double distance, String errorMsg)`
 
 ### 2. Overpass API Client mit Fallback-Mirror
-- **[NEW] [OverpassApiClient.java](file:///Users/ioannissvolos/Desktop/Master/Automatisierte%20Geodatenprozessierung/Projekt/CourtScout/app/src/main/java/org/courtscout/net/OverpassApiClient.java)**
+- **[NEW] OverpassApiClient.java**
   - Request-Logik mit `HttpURLConnection`:
     - Connect Timeout: 10.000 ms, Read Timeout: 15.000 ms
     - Primär: `https://overpass-api.de/api/interpreter`
@@ -46,17 +46,17 @@ Erweiterung der CourtScout-App um eine automatische Hintergrundprüfung gegen di
     - Bei HTTP != 200, Timeout oder Parse-Fehler auf beiden Servern: Callback mit `ERROR` und Fehlermeldung.
 
 ### 3. UI-Ressourcen & Visualisierung
-- **[NEW] [ic_marker_match.xml](file:///Users/ioannissvolos/Desktop/Master/Automatisierte%20Geodatenprozessierung/Projekt/CourtScout/app/src/main/res/drawable/ic_marker_match.xml)**: Grüner Marker (#10B981)
-- **[NEW] [ic_marker_missing.xml](file:///Users/ioannissvolos/Desktop/Master/Automatisierte%20Geodatenprozessierung/Projekt/CourtScout/app/src/main/res/drawable/ic_marker_missing.xml)**: Roter Marker (#EF4444)
-- **[NEW] [ic_marker_error.xml](file:///Users/ioannissvolos/Desktop/Master/Automatisierte%20Geodatenprozessierung/Projekt/CourtScout/app/src/main/res/drawable/ic_marker_error.xml)**: Grauer Marker (#64748B)
-- **[NEW] [ic_retry.xml](file:///Users/ioannissvolos/Desktop/Master/Automatisierte%20Geodatenprozessierung/Projekt/CourtScout/app/src/main/res/drawable/ic_retry.xml)**: Wiederholen-Icon für fehlgeschlagene Abfragen
-- **[MODIFY] [item_record.xml](file:///Users/ioannissvolos/Desktop/Master/Automatisierte%20Geodatenprozessierung/Projekt/CourtScout/app/src/main/res/layout/item_record.xml)**: Einbau von Status-Chip / Badge und Retry-Button
-- **[MODIFY] [CourtRecordAdapter.java](file:///Users/ioannissvolos/Desktop/Master/Automatisierte%20Geodatenprozessierung/Projekt/CourtScout/app/src/main/java/org/courtscout/adapter/CourtRecordAdapter.java)**:
+- **[NEW] ic_marker_match.xml**: Grüner Marker (#10B981)
+- **[NEW] ic_marker_missing.xml**: Roter Marker (#EF4444)
+- **[NEW] ic_marker_error.xml**: Grauer Marker (#64748B)
+- **[NEW] ic_retry.xml**: Wiederholen-Icon für fehlgeschlagene Abfragen
+- **[MODIFY] item_record.xml**: Einbau von Status-Chip / Badge und Retry-Button
+- **[MODIFY] CourtRecordAdapter.java**:
   - Darstellung der Badges (Grün mit Distanz/ID, Rot "Fehlt in OSM", Grau/Orange "Prüfung fehlgeschlagen" + Retry-Klick)
   - Neuer Callback `onRetryOsmCheck(CourtRecord record)`
 
 ### 4. Integration in MainActivity
-- **[MODIFY] [MainActivity.java](file:///Users/ioannissvolos/Desktop/Master/Automatisierte%20Geodatenprozessierung/Projekt/CourtScout/app/src/main/java/org/courtscout/MainActivity.java)**
+- **[MODIFY] MainActivity.java**
   - Nach Bildaufnahme: Datensatz sofort mit Status `PENDING` anlegen.
   - Hintergrundprüfung anstoßen: `overpassApiClient.checkCourtInOsm(record, callback)`
   - Nach Antwort: SQLite aktualisieren, Adapter benachrichtigen, Kartenmarker farblich aktualisieren (Grün / Rot / Grau).

@@ -210,7 +210,7 @@ So ist die App für den produktiven Einsatz gedacht:
 
 ### Per Terminal
 ```bash
-cd "/Users/ioannissvolos/Desktop/Master/Automatisierte Geodatenprozessierung/Projekt/BriefkastenScout"
+cd BriefkastenScout
 ./gradlew assembleDebug
 ```
 APK-Pfad: `app/build/outputs/apk/debug/app-debug.apk`
