@@ -59,17 +59,6 @@ Die Pipeline funktioniert nachweislich End-to-End (siehe Screenshots unten): kor
 https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
 
 
-# Screenshots
-
-| | |
-|---|---|
-| ![MATCH + visuell erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.21.20.png) | ![Vergleich zweier Testfälle](screenshots/Bildschirmfoto%202026-09-20%20um%2004.22.40.png) |
-| OSM-Treffer & visuelle Erkennung stimmen überein (98,7 %) | MATCH (grün) vs. MISSING + nicht erkannt (rot) im Vergleich |
-| ![Roboflow Annotation](screenshots/Bildschirmfoto%202026-09-19%20um%2022.18.04.png) | ![Roboflow Split](screenshots/Bildschirmfoto%202026-09-19%20um%2022.54.47.png) |
-| Roboflow: Bounding-Box-Annotation der Trainingsfotos | Roboflow: automatischer Train/Valid/Test-Split |
-
-Weitere Screenshots (Kartenansicht, Fehlerfall + Retry): Ordner [`screenshots/`](screenshots/).
-
 # Projektablauf mit Screenshots
 
 ## 1. Roboflow
