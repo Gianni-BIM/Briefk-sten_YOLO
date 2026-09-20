@@ -9,7 +9,7 @@ Android-App zur automatisierten Erkennung fehlender Briefkästen (`amenity=post_
 
 ```mermaid
 flowchart LR
-    A["📷 Foto + GPS<br/>vor Ort"] --> B[("SQLite")]
+    A["Foto + GPS<br/>vor Ort"] --> B[("SQLite")]
     B --> C["Overpass API<br/>OSM-Abgleich"]
     B --> D["YOLO On-Device<br/>Bilderkennung"]
     C --> E["MATCH / MISSING<br/>/ ERROR"]
