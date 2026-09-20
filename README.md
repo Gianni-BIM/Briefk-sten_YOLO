@@ -85,7 +85,7 @@ Weitere Screenshots (Kartenansicht, Fehlerfall + Retry): Ordner [`screenshots/`]
 ![Google Colab Training](screenshots/Bildschirmfoto%202026-09-19%20um%2023.24.56.png)
 
 **Ausgangsmaterial – echtes Foto eines Briefkastens (Datenbasis für Training & Test):**
-![Echtes Briefkasten-Foto](screenshots/Bildschirmfoto%2026-09-20%um%03.37.40%Kopie.png)
+<img width="369" height="795" alt="Bildschirmfoto 2026-09-20 um 03 37 40 Kopie" src="https://github.com/user-attachments/assets/a8f03ef4-40b7-4ca8-898e-75ea47a9b80a" />
 
 **Erfolgreicher Testfall – OSM-Treffer UND visuelle KI-Erkennung stimmen überein (98,7 % Konfidenz):**
 ![MATCH + visuell erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.21.20.png)
