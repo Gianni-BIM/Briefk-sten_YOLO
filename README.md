@@ -61,7 +61,7 @@ https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
 
 # Projektablauf mit Screenshots
 
-## 1. Roboflow
+# 1. Roboflow
 **Roboflow: manuelle Bounding-Box-Annotation eines Briefkastens im Kandidaten-Foto:**
 
 ![Roboflow Annotation](screenshots/Bildschirmfoto%202026-09-19%20um%2022.18.04.png)
