@@ -22,7 +22,7 @@ Android-App, die vor Ort fotografierte Briefkästen (`amenity=post_box`) automat
 **Ausführliche Kurzbeschreibung & Projektskizze:** [kurzbeschreibung.md](kurzbeschreibung.md) · **Volle technische Doku:** [doku.md](doku.md)
 
 
-## Funktionsweise
+# Funktionsweise
 
 ```mermaid
 flowchart LR
@@ -37,7 +37,7 @@ flowchart LR
     G -->|Nein| I["Dokumentiert, keine Aktion"]
 ```
 
-## Die KI-gestützte, automatisierte Prozesskette
+# Die KI-gestützte, automatisierte Prozesskette
 
 Der Fokus dieses Experiments lag auf der **vollständigen Automatisierung des Entwicklungs- und Datenprozesses durch KI** anstelle von Handarbeit:
 
@@ -49,17 +49,17 @@ Der Fokus dieses Experiments lag auf der **vollständigen Automatisierung des En
 Damit deckt das Projekt die gesamte geforderte Kette ab – von der per KI generierten GeoIT-App bis zur automatisierten Objekterkennung (On-Device).
 
 
-## Ergebnis & Grenzen (siehe `doku.md`, Kapitel 8)
+# Ergebnis & Grenzen (siehe `doku.md`, Kapitel 8)
 
 Die Pipeline funktioniert nachweislich End-to-End (siehe Screenshots unten): korrektes Erkennen bereits kartierter Briefkästen, korrektes Melden fehlender Briefkästen, und korrekte visuelle Bestätigung per selbst trainiertem Modell (98,7 % Konfidenz bei einem echten Testfoto). Bei nur 114 annotierten Trainingsbildern ist die Generalisierung des Modells auf beliebige Straßenfotos noch begrenzt (dokumentiert in `doku.md`) – ein realistisches, ehrlich reflektiertes Ergebnis für den Umfang dieses Experiments.
 
 
-## Demo-Video
+# Demo-Video
 
 https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
 
 
-## Screenshots
+# Screenshots
 
 | | |
 |---|---|
@@ -70,37 +70,38 @@ https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
 
 Weitere Screenshots (Kartenansicht, Fehlerfall + Retry): Ordner [`screenshots/`](screenshots/).
 
-## Projektablauf mit Screenshots
+# Projektablauf mit Screenshots
 
-**Roboflow: manuelle Bounding-Box-Annotation eines Briefkastens im Kandidaten-Foto:**
+## 1. Roboflow
+**1.1 Roboflow: manuelle Bounding-Box-Annotation eines Briefkastens im Kandidaten-Foto:**
 ![Roboflow Annotation](screenshots/Bildschirmfoto%202026-09-19%20um%2022.18.04.png)
 
-**Roboflow: Übersicht des annotierten Datensatzes (114 von 821 Fotos mit Bounding Boxes):**
+**1.2 Roboflow: Übersicht des annotierten Datensatzes (114 von 821 Fotos mit Bounding Boxes):**
 ![Roboflow Datensatz-Übersicht](screenshots/Bildschirmfoto%202026-09-19%20um%2022.54.32.png)
 
-**Roboflow: automatischer Train/Valid/Test-Split (70/20/10) vor dem Export:**
+**1.3 Roboflow: automatischer Train/Valid/Test-Split (70/20/10) vor dem Export:**
 ![Roboflow Train/Valid/Test Split](screenshots/Bildschirmfoto%202026-09-19%20um%2022.54.47.png)
 
-**Google Colab: YOLOv8-Training (Ultralytics) und Export nach TensorFlow Lite** (API-Key im Screenshot geschwärzt):
+**1.4 Google Colab: YOLOv8-Training (Ultralytics) und Export nach TensorFlow Lite** (API-Key im Screenshot geschwärzt):
 ![Google Colab Training](screenshots/Bildschirmfoto%202026-09-19%20um%2023.24.56.png)
 
 
-## App
-| **Ausgangsmaterial – echtes Foto eines Briefkastens (Datenbasis für Training & Test):** | **Erfolgreicher Testfall – OSM-Treffer UND visuelle KI-Erkennung stimmen überein (98,7 % Konfidenz):** |
+## 2. App
+| **2.1 Ausgangsmaterial: echtes Foto eines Briefkastens (Datenbasis für Training & Test):** | **Erfolgreicher Testfall – OSM-Treffer UND visuelle KI-Erkennung stimmen überein (98,7 % Konfidenz):** |
 |---|---|
 | <img width="369" alt="Bildschirmfoto 2026-09-20 um 03 37 40 Kopie" src="https://github.com/user-attachments/assets/a8f03ef4-40b7-4ca8-898e-75ea47a9b80a" /> | ![MATCH + visuell erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.21.20.png) |
 
-| **Ausgangsmaterial – Foto ohne Briefkasten (Negativtest):** | **Negativtest – OSM UND visuelle Erkennung stimmen korrekt überein (kein Briefkasten):** |
+| **2.2 Ausgangsmaterial: Foto ohne Briefkasten (Negativtest):** | **Negativtest – OSM UND visuelle Erkennung stimmen korrekt überein (kein Briefkasten):** |
 |---|---|
 | ![Foto ohne Briefkasten](screenshots/Bildschirmfoto%202026-09-20%20um%2003.37.50.png) | ![MISSING + nicht erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.22.17.png) |
 
-**Ausgangsmaterial – echtes Foto eines Briefkastens (Datenbasis für Training & Test):**
+**2.3 Ausgangsmaterial: echtes Foto eines Briefkastens (Datenbasis für Training & Test):**
 <img width="369" height="795" alt="Bildschirmfoto 2026-09-20 um 03 37 40 Kopie" src="https://github.com/user-attachments/assets/a8f03ef4-40b7-4ca8-898e-75ea47a9b80a" />
 
-**Erfolgreicher Testfall – OSM-Treffer UND visuelle KI-Erkennung stimmen überein (98,7 % Konfidenz):**
+**2.4 Erfolgreicher Testfall: OSM-Treffer UND visuelle KI-Erkennung stimmen überein (98,7 % Konfidenz):**
 ![MATCH + visuell erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.21.20.png)
 
-**Vergleich zweier Testfälle nebeneinander – MATCH (grün) vs. MISSING + nicht erkannt (rot), inkl. GPS-Steuerung im Emulator:**
+**2.5 Vergleich zweier Testfälle nebeneinander: MATCH (grün) vs. MISSING + nicht erkannt (rot), inkl. GPS-Steuerung im Emulator:**
 ![Vergleich zweier Testfälle](screenshots/Bildschirmfoto%202026-09-20%20um%2004.22.40.png)
 
 
