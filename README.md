@@ -18,6 +18,12 @@ flowchart LR
 
 Beide Prüfungen laufen unabhängig; **MISSING + visuell erkannt** = eine mit Foto belegte, echte Kartierungslücke.
 
+## Demo-Video
+
+<video src="https://github.com/Gianni-BIM/Briefk-sten_YOLO/releases/download/v1.0/BriefkastenScout-Demo.mp4" controls width="360"></video>
+
+Falls das Video oben nicht abspielt: [Demo-Video direkt öffnen](https://github.com/Gianni-BIM/Briefk-sten_YOLO/releases/download/v1.0/BriefkastenScout-Demo.mp4) (nicht im Repo selbst gehostet, da > 50 MB).
+
 ## Screenshots
 
 | | |
