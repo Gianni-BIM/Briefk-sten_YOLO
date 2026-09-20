@@ -3,7 +3,6 @@
 **Name:** Ioannis Svolos  
 **Matrikelnummer:** 906758  
 **Modul:** Automatisierte Geodatenprozessierung  
-**Repository:** [GitHub Link](https://github.com/Gianni-BIM/Briefk-sten_YOLO)
 
 ---
 
@@ -14,7 +13,7 @@
 - [Projektablauf in Bildern](#projektablauf-in-bildern)
 - [Installation & Ausführung](#installation--ausführung)
 - [Projektstruktur](#projektstruktur)
-- [Die KI-gestützte, automatisierte Prozesskette](#die-ki-gestützte-automatisierte-prozesskette)
+- [Die KI-gestützte automatisierte Prozesskette](#die-ki-gestützte-automatisierte-prozesskette)
 - [Ergebnis & Grenzen](#ergebnis--grenzen)
 ---
 
@@ -85,6 +84,7 @@ https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
 | ![Foto ohne Briefkasten](screenshots/Bildschirmfoto%202026-09-20%20um%2003.37.50.png) | ![MISSING + nicht erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.22.17.png) |
 
 **Vergleich zweier Testfälle nebeneinander: MATCH (grün) vs. MISSING + nicht erkannt (rot), inkl. GPS-Steuerung im Emulator:**
+
 ![Vergleich zweier Testfälle](screenshots/Bildschirmfoto%202026-09-20%20um%2004.22.40.png)
 
 ---
@@ -106,9 +106,9 @@ cd BriefkastenScout
 ## Projektstruktur
 
 ```text
-├── BriefkastenScout/     # Android-App (Java) inkl. TFLite-Modell
+├── BriefkastenScout/     # Android-App (Java) inkl. TFLite Modell
 ├── M3_YOLO_Bootstrap/    # Pipeline für Trainingsdaten (OSM + Mapillary + Colab)
-├── Prompt 1–3/           # KI-Prompts je Ausbaustufe
+├── Prompt 1–3/           # KI Prompts
 ├── screenshots/          # Alle Bilder für die Doku
 ```
 
