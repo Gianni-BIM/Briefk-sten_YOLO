@@ -1,9 +1,26 @@
-# Briefkasten Scout
+# Kurzbeschreibung – Briefkasten Scout App
 
-Android-App zur automatisierten Erkennung fehlender Briefkästen (`amenity=post_box`) in OpenStreetMap: GPS-gestützter OSM-Abgleich (Overpass API) kombiniert mit On-Device-KI-Bilderkennung (selbst trainiertes YOLO-Modell, TensorFlow Lite).
+**Name:** Ioannis Svolos
+**Matrikelnummer:** 906758
+**Modul:** Automatisierte Geodatenprozessierung
 
-**Modul:** Automatisierte Geodatenprozessierung · **Autor:** Ioannis Svolos · **Matrikelnummer:** 906758
+**Repository (Quellcode & ausführbarer Code):** https://github.com/Gianni-BIM/Briefk-sten_YOLO
+
+
+# Projektidee
+
+Android-App, die vor Ort fotografierte Briefkästen (`amenity=post_box`) automatisch gegen OpenStreetMap abgleicht (Overpass API) und zusätzlich per selbst trainiertem YOLO-Modell direkt auf dem Gerät erkennt, ob tatsächlich ein Briefkasten im Foto zu sehen ist.
+
+**Briefkasten Scout** ist eine Android-App, die den kompletten Prozess von der Vor-Ort-Erfassung bis zur automatisierten Validierung gegen OpenStreetMap abbildet:
+
+1. Foto + präzise GPS-Position werden vor Ort aufgenommen.
+2. Eine automatisierte **Overpass-API-Abfrage** prüft im Hintergrund, ob an dieser Position bereits ein Briefkasten in OSM erfasst ist (MATCH / MISSING / ERROR).
+3. Ein selbst trainiertes **YOLO-Modell** läuft direkt auf dem Gerät (TensorFlow Lite) und prüft unabhängig davon, ob auf dem Foto tatsächlich ein Briefkasten zu sehen ist.
+4. Die aussagekräftigste Kombination – **MISSING + visuell bestätigt** – markiert eine mit Foto belegte, echte Kartierungslücke in OSM.
+
+
 **Ausführliche Kurzbeschreibung & Projektskizze:** [kurzbeschreibung.md](kurzbeschreibung.md) · **Volle technische Doku:** [doku.md](doku.md)
+
 
 ## Funktionsweise
 
@@ -18,15 +35,27 @@ flowchart LR
 
 Beide Prüfungen laufen unabhängig; **MISSING + visuell erkannt** = eine mit Foto belegte, echte Kartierungslücke.
 
+## Die KI-gestützte, automatisierte Prozesskette
+
+Der Fokus dieses Experiments lag auf der **vollständigen Automatisierung des Entwicklungs- und Datenprozesses durch KI** anstelle von Handarbeit:
+
+- **App-Entwicklung per KI (Google Antigravity):** Die Android-App entstand nicht durch manuelles Coden, sondern iterativ durch gezieltes Prompting (siehe `Prompt 1/`, `Prompt 2/`, `Prompt 3/` im Repository). Der KI-Agent integrierte selbstständig MapLibre, GPS, Kamera, Overpass-API und das TensorFlow-Lite-Modell.
+- **Trainingsdaten auf Knopfdruck:** Das Skript `M3_YOLO_Bootstrap/bootstrap.py` zieht bekannte Briefkästen aus OSM und verknüpft sie automatisch mit passenden **Mapillary-Streetview-Fotos**. Manuelles Fotografieren vor Ort entfällt komplett.
+- **KI-Modelltraining:** Nach der Annotation in **Roboflow** (114 von 821 Bildern markiert, 70/20/10-Split) wurde ein **YOLOv8n**-Modell in **Google Colab** trainiert und direkt für die App als TensorFlow Lite-Modell exportiert.
+- **Automatisierter Stadt-Scan:** `M3_YOLO_Bootstrap/city_scan.py` wendet das Modell flächendeckend auf Berliner Mapillary-Fotos an und gleicht Treffer live mit OSM ab. Ein Proof-of-Concept, um Kartierungslücken im großen Stil direkt vom Schreibtisch aus zu finden.
+
+Damit deckt das Projekt die gesamte geforderte Kette ab – von der per KI generierten GeoIT-App bis zur automatisierten Objekterkennung (On-Device).
+
+
+## Ergebnis & Grenzen (siehe `doku.md`, Kapitel 8)
+
+Die Pipeline funktioniert nachweislich End-to-End (siehe Screenshots unten): korrektes Erkennen bereits kartierter Briefkästen, korrektes Melden fehlender Briefkästen, und korrekte visuelle Bestätigung per selbst trainiertem Modell (98,7 % Konfidenz bei einem echten Testfoto). Bei nur 114 annotierten Trainingsbildern ist die Generalisierung des Modells auf beliebige Straßenfotos noch begrenzt (dokumentiert in `doku.md`) – ein realistisches, ehrlich reflektiertes Ergebnis für den Umfang dieses Experiments.
+
+
 ## Demo-Video
-
-<video src="https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0" controls width="360"></video>
-
 
 https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
 
-
-Falls das Video oben nicht abspielt: [Demo-Video direkt öffnen](https://github.com/Gianni-BIM/Briefk-sten_YOLO/releases/download/v1.0/BriefkastenScout-Demo.mp4) (nicht im Repo selbst gehostet, da > 50 MB).
 
 ## Screenshots
 
