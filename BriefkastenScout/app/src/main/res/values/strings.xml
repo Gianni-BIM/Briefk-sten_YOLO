@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Briefkasten Scout</string>
+    <string name="action_locate">Standort ermitteln</string>
+    <string name="action_camera">Foto aufnehmen</string>
+    <string name="action_show_list">Fotos anzeigen</string>
+    <string name="title_records">Erfasste Briefkästen</string>
+    <string name="no_records">Noch keine Fotos aufgenommen.\nDrücke auf das Kamerasymbol, um einen Briefkasten mit GPS zu erfassen.</string>
+    <string name="permission_location_rationale">Briefkasten Scout benötigt Zugriff auf den Standort, um die Position auf der Karte anzuzeigen und Fotos mit Geokoordinaten zu versehen.</string>
+    <string name="permission_camera_rationale">Briefkasten Scout benötigt Zugriff auf die Kamera, um Briefkästen vor Ort zu fotografieren.</string>
+    <string name="permission_denied">Berechtigung verweigert. Funktion steht nicht zur Verfügung.</string>
+    <string name="location_not_available">GPS-Standort konnte nicht ermittelt werden. Bitte stelle sicher, dass GPS aktiviert ist.</string>
+    <string name="photo_saved_success">Foto und GPS-Position erfolgreich gespeichert!</string>
+    <string name="photo_capture_failed">Fotoaufnahme abgebrochen oder fehlgeschlagen.</string>
+    <string name="delete_record_confirm">Diesen Datensatz wirklich löschen?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="record_details">Briefkasten-Details</string>
+    <string name="latitude_label">Breitengrad (Lat):</string>
+    <string name="longitude_label">Längengrad (Lng):</string>
+    <string name="timestamp_label">Zeitpunkt:</string>
+
+    <!-- OSM Status Meldungen -->
+    <string name="osm_status_match">Bereits in OSM erfasst</string>
+    <string name="osm_status_missing">Nicht in OSM erfasst</string>
+    <string name="osm_status_error">Prüfung fehlgeschlagen</string>
+    <string name="osm_status_pending">Prüfe Overpass API...</string>
+    <string name="osm_status_label">OSM-Status:</string>
+    <string name="action_retry_check">Erneut prüfen</string>
+
+    <!-- Visuelle YOLO Erkennung (amenity=post_box) -->
+    <string name="visual_status_detected">Briefkasten erkannt</string>
+    <string name="visual_status_not_detected">Kein Briefkasten erkannt</string>
+    <string name="visual_status_error">Bildanalyse fehlgeschlagen</string>
+    <string name="visual_status_pending">Analysiere Bild (YOLO)...</string>
+    <string name="visual_status_label">Visuelle Erkennung:</string>
+    <string name="confidence_label">Konfidenz:</string>
+</resources>

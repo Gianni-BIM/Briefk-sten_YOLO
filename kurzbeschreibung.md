@@ -1,0 +1,1 @@
+In Session 1 hat der Prof gefragt "Wie viele Sitzbänke gibt es in der OSM-Welt?" – Schätzungen der Studierenden lagen bei 40 Mio. bis 1,5 Mrd., tatsächlich sind es laut taginfo nur 3.184.117. Diese riesige Lücke zwischen geschätzter Realität und OSM-Bestand ist genau die Motivation für euer Projekt – und ein gutes Zitat für deine Kurzbeschreibung.

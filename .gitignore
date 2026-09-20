@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Android / Gradle Build-Artefakte
+BriefkastenScout/app/build/
+BriefkastenScout/build/
+BriefkastenScout/.gradle/
+BriefkastenScout/local.properties
+BriefkastenScout/.idea/
+BriefkastenScout/*.iml
+BriefkastenScout/captures/
+BriefkastenScout/.cxx/
+BriefkastenScout/.externalNativeBuild/
+
+# Geheimnisse (niemals committen)
+M3_YOLO_Bootstrap/mapillary_token.txt
+
+# Python
+M3_YOLO_Bootstrap/.venv_infer/
+M3_YOLO_Bootstrap/__pycache__/
+*.pyc
+
+# Große Rohdaten-Bilddumps (Trainings-/Scan-Fotos, nicht Teil der Abgabe)
+M3_YOLO_Bootstrap/output/images/
+M3_YOLO_Bootstrap/output/images_filtered/
+M3_YOLO_Bootstrap/city_scan_output/images/

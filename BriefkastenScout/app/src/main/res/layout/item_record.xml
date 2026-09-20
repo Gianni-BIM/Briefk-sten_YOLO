@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_record"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="2dp"
+    app:strokeWidth="1.5dp"
+    app:strokeColor="@color/divider"
+    app:cardBackgroundColor="@color/surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center_vertical">
+
+        <!-- Metadaten: Titel, Koordinaten & OSM-Badge -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_record_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Briefkasten #1"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/text_primary" />
+
+            <TextView
+                android:id="@+id/tv_record_coords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="48.13715° N, 11.57612° E"
+                android:textSize="11sp"
+                android:textColor="@color/text_secondary" />
+
+            <!-- OSM Status Badge (Grün, Rot oder Grau) -->
+            <LinearLayout
+                android:id="@+id/layout_osm_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_badge_rounded"
+                android:paddingStart="8dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="3dp">
+
+                <View
+                    android:id="@+id/view_status_dot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/bg_status_dot" />
+
+                <TextView
+                    android:id="@+id/tv_osm_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="In OSM erfasst"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/osm_match" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Aktionen: Retry (bei ERROR), Auf Karte zeigen & Löschen -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Retry Button (nur sichtbar bei Status ERROR) -->
+            <ImageButton
+                android:id="@+id/btn_retry_osm"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/action_retry_check"
+                app:tint="@color/osm_error"
+                android:src="@drawable/ic_retry"
+                android:visibility="gone" />
+
+            <!-- Auf Karte anzeigen Button -->
+            <ImageButton
+                android:id="@+id/btn_show_on_map"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Auf Karte zeigen"
+                app:tint="@color/primary"
+                android:src="@drawable/ic_briefkasten_marker" />
+
+            <!-- Löschen Button -->
+            <ImageButton
+                android:id="@+id/btn_delete_record"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Löschen"
+                app:tint="@color/danger"
+                android:src="@drawable/ic_delete" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
