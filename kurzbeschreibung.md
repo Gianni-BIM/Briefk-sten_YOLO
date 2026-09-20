@@ -64,14 +64,14 @@ Der Schwerpunkt dieses Experiments lag bewusst auf der **Automatisierung des ges
 
 - **App-Entwicklung per KI-Agent (Google Antigravity):** Die Android-App wurde nicht Zeile für Zeile von Hand programmiert, sondern iterativ über präzise Prompt-Spezifikationen (siehe `Prompt 1/`, `Prompt 2/`, `Prompt 3/` im Repository) durch den agentenbasierten KI-Programmierassistenten **Google Antigravity** erzeugt: von der MapLibre-Kartenintegration über GPS/Kamera-Anbindung bis zur automatisierten Overpass-API-Query-Generierung und der finalen TensorFlow-Lite-Modellintegration.
 - **Automatisierte Trainingsdaten-Erhebung:** Ein Python-Skript (`M3_YOLO_Bootstrap/bootstrap.py`) fragt vollautomatisch bekannte Briefkästen aus OpenStreetMap ab und verknüpft sie mit passenden Streetview-Fotos der **Mapillary-API** – ganz ohne manuelles Fotografieren im Feld.
-- **KI-gestütztes Modelltraining:** Annotation der Kandidaten-Fotos über **Roboflow**, Training eines **Ultralytics YOLO**-Objekterkennungsmodells in **Google Colab**, automatisierter Export nach TensorFlow Lite (LiteRT) für die On-Device-Ausführung.
+- **KI-gestütztes Modelltraining:** Annotation der Kandidaten-Fotos über **Roboflow** (von 821 gesammelten Fotos wurden 114 mit Bounding Boxes um sichtbare Briefkästen annotiert, automatischer 70/20/10-Split in 80 Trainings-, 23 Validierungs- und 11 Testbilder), Training eines **Ultralytics YOLOv8n**-Objekterkennungsmodells in **Google Colab** (100 Epochen, Bildgröße 640px), automatisierter Export nach TensorFlow Lite (LiteRT) für die On-Device-Ausführung.
 - **Stadtweite automatisierte Anwendung:** `M3_YOLO_Bootstrap/city_scan.py` wendet das trainierte Modell automatisiert auf flächendeckend gesammelte Mapillary-Fotos eines Berliner Stadtgebiets an und gleicht Treffer live gegen OSM ab – als Machbarkeitsnachweis für eine vollautomatisierte, KI-gestützte Kartierungslücken-Erkennung im großen Maßstab, ganz ohne persönlichen Vor-Ort-Einsatz.
 
 Damit deckt das Projekt die komplette in der Aufgabenstellung beschriebene Kette ab: von der KI-gestützten Erzeugung einer GeoIT-Mobile-Anwendung (Antigravity + Overpass API) bis zur KI-gestützten automatisierten Objekterkennung/Klassifizierung (YOLO on-device).
 
 ## Ergebnis & Grenzen (siehe `doku.md`, Kapitel 8)
 
-Die Pipeline funktioniert nachweislich End-to-End (siehe Screenshots unten): korrektes Erkennen bereits kartierter Briefkästen, korrektes Melden fehlender Briefkästen, und korrekte visuelle Bestätigung per selbst trainiertem Modell (98,7 % Konfidenz bei einem echten Testfoto). Bei nur ~130 Trainingsbildern ist die Generalisierung des Modells auf beliebige Straßenfotos noch begrenzt (dokumentiert in `doku.md`) – ein realistisches, ehrlich reflektiertes Ergebnis für den Umfang dieses Experiments.
+Die Pipeline funktioniert nachweislich End-to-End (siehe Screenshots unten): korrektes Erkennen bereits kartierter Briefkästen, korrektes Melden fehlender Briefkästen, und korrekte visuelle Bestätigung per selbst trainiertem Modell (98,7 % Konfidenz bei einem echten Testfoto). Bei nur 114 annotierten Trainingsbildern ist die Generalisierung des Modells auf beliebige Straßenfotos noch begrenzt (dokumentiert in `doku.md`) – ein realistisches, ehrlich reflektiertes Ergebnis für den Umfang dieses Experiments.
 
 ## Screenshots
 
@@ -83,6 +83,18 @@ Die Pipeline funktioniert nachweislich End-to-End (siehe Screenshots unten): kor
 
 **Vergleich zweier Testfälle nebeneinander – MATCH (grün) vs. MISSING + nicht erkannt (rot), inkl. GPS-Steuerung im Emulator:**
 ![Vergleich zweier Testfälle](screenshots/Bildschirmfoto%202026-09-20%20um%2004.22.40.png)
+
+**Roboflow – manuelle Bounding-Box-Annotation eines Briefkastens im Kandidaten-Foto:**
+![Roboflow Annotation](screenshots/Bildschirmfoto%202026-09-19%20um%2022.18.04.png)
+
+**Roboflow – Übersicht des annotierten Datensatzes (114 von 821 Fotos mit Bounding Boxes):**
+![Roboflow Datensatz-Übersicht](screenshots/Bildschirmfoto%202026-09-19%20um%2022.54.32.png)
+
+**Roboflow – automatischer Train/Valid/Test-Split (70/20/10) vor dem Export:**
+![Roboflow Train/Valid/Test Split](screenshots/Bildschirmfoto%202026-09-19%20um%2022.54.47.png)
+
+**Google Colab – YOLOv8-Training (Ultralytics) und Export nach TensorFlow Lite** (API-Key im Screenshot geschwärzt):
+![Google Colab Training](screenshots/Bildschirmfoto%202026-09-19%20um%2023.24.56.png)
 
 Alle weiteren Screenshots (inkl. Kartenansicht, Fehlerfall mit Retry-Funktion) liegen im Ordner [`screenshots/`](screenshots/).
 

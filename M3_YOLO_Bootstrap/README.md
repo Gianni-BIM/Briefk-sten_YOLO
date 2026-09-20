@@ -50,15 +50,17 @@ output/
 
 ## Nächste Schritte (nach diesem Bootstrap)
 
-1. Bilder aus `output/images/` (oder `output/images_filtered/`) in ein
-   Annotation-Tool laden und Bounding Boxes um sichtbare Briefkästen ziehen
-   (Klasse z. B. `post_box`).
-2. Train/Val-Split (z. B. 80/20) und Export im YOLO-Format
-   (`images/train`, `images/val`, `labels/train`, `labels/val`).
-3. YOLO-Modell trainieren (z. B. Ultralytics YOLOv8/YOLO11, `yolo train ...`).
-4. Modell nach TensorFlow Lite exportieren (`yolo export format=tflite`).
+1. Bilder aus `output/images/` (oder `output/images_filtered/`) in **Roboflow**
+   geladen und Bounding Boxes um sichtbare Briefkästen gezogen (114 von 821
+   Fotos annotiert, Klasse `post_box`).
+2. Automatischer Train/Valid/Test-Split in Roboflow (70/20/10 → 80/23/11 Bilder)
+   und Export im YOLOv8-Format.
+3. YOLO-Modell trainieren mit **Ultralytics YOLOv8n** in **Google Colab**
+   (100 Epochen, Bildgröße 640px) – siehe [`train_yolov8_colab.py`](train_yolov8_colab.py).
+4. Modell nach TensorFlow Lite exportieren (`model.export(format="tflite")`,
+   im selben Skript enthalten).
 5. Exportiertes `.tflite`-Modell gemäß `Prompt 3` (`Projekt/Prompt 3/promt3.md`)
-   in die CourtScout-App integrieren.
+   in die BriefkastenScout-App integriert (`app/src/main/assets/briefkasten_detector.tflite`).
 
 ## Parameter anpassen
 
