@@ -45,7 +45,11 @@ Beide Prüfungen laufen unabhängig und parallel; die aussagekräftigste Kombina
 
 Vollständige Details zu Architektur, Overpass-Query, Modell-Training und Grenzen der visuellen Erkennung: siehe [doku.md](doku.md).
 
-## Bauen & Ausführen
+## Ausführbare APK
+
+Eine fertig kompilierte, installierbare Debug-APK steht unter [GitHub Releases](https://github.com/Gianni-BIM/Briefk-sten_YOLO/releases) zum Download bereit (nicht im Git-Repository selbst, da > 50 MB).
+
+## Bauen & Ausführen (aus dem Quellcode)
 
 ```bash
 cd BriefkastenScout
@@ -53,6 +57,14 @@ cd BriefkastenScout
 ```
 
 Projekt kann auch direkt in Android Studio geöffnet werden (`BriefkastenScout/` als Projektordner auswählen).
+
+## KI-gestützte, automatisierte Entwicklungs-Prozesskette
+
+Dieses Projekt setzt bewusst auf eine durchgängig KI-gestützte Automatisierung statt manueller Handarbeit:
+
+- **Google Antigravity** (agentenbasierte KI-IDE) generierte die Android-App iterativ aus präzisen Prompt-Spezifikationen (siehe `Prompt 1/`–`Prompt 3/`) – inklusive automatisierter Overpass-API-Query-Erstellung.
+- Die YOLO-Trainingsdaten wurden vollautomatisch über die **OpenStreetMap**- und **Mapillary-APIs** gesammelt (`M3_YOLO_Bootstrap/bootstrap.py`), Annotation über **Roboflow**, Training via **Google Colab** + **Ultralytics YOLO**, Export nach **TensorFlow Lite**.
+- Details und Ergebnisse dieses Experiments: siehe [kurzbeschreibung.md](kurzbeschreibung.md).
 
 ## YOLO-Trainingsdaten-Pipeline
 
