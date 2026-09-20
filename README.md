@@ -42,7 +42,9 @@ flowchart LR
 https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
 
 
+
 # Projektablauf mit Screenshots
+---
 
 ## 1. Roboflow
 **Roboflow: manuelle Bounding-Box Annotation eines Briefkastens im Kandidaten-Foto:**
@@ -57,7 +59,7 @@ https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
 
 ![Roboflow Train/Valid/Test Split](screenshots/Bildschirmfoto%202026-09-19%20um%2022.54.47.png)
 
-**Google Colab: YOLOv8 Training (Ultralytics) und Export nach TensorFlow Lite** (API-Key im Screenshot geschwärzt):
+**Google Colab: YOLOv8 Training (Ultralytics) und Export nach TensorFlow Lite**:
 
 ![Google Colab Training](screenshots/Bildschirmfoto%202026-09-19%20um%2023.24.56.png)
 
@@ -80,7 +82,7 @@ https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
 
 ## Ausführbare APK
 
-Fertig kompilierte Debug-APK zum Installieren: [GitHub Release](https://github.com/Gianni-BIM/Briefk-sten_YOLO/releases) (nicht im Repo selbst, da > 50 MB).
+Fertig kompilierte Debug APK zum Installieren: [GitHub Release](https://github.com/Gianni-BIM/Briefk-sten_YOLO/releases) (nicht im Repo selbst, da > 50 MB).
 
 ## Bauen aus dem Quellcode
 
@@ -95,27 +97,26 @@ Oder direkt in Android Studio: Ordner `BriefkastenScout/` öffnen.
 
 ```
 ├── BriefkastenScout/     # Android-App (Java) inkl. trainiertem TFLite-Modell
-├── M3_YOLO_Bootstrap/    # Trainingsdaten-Pipeline (OSM + Mapillary + Colab-Training)
+├── M3_YOLO_Bootstrap/    # Trainingsdaten Pipeline (OSM + Mapillary + Colab Training)
 ├── Prompt 1–3/           # Spezifikationen je Ausbaustufe
-├── screenshots/          # Alle App- und Trainings-Screenshots
+├── screenshots/          # Alle App und Trainings Screenshots
 ├── doku.md               # Vollständige technische Dokumentation
-└── kurzbeschreibung.md   # Kurzbeschreibung, Projektskizze, KI-Prozesskette
+└── kurzbeschreibung.md   # Kurzbeschreibung, Projektskizze, KI Prozesskette
 ```
 
 
-# Die KI-gestützte, automatisierte Prozesskette
+# Die KI-gestützte automatisierte Prozesskette
 
-App-Generierung aus Prompt-Spezifikationen via **Google Antigravity**, automatisierte Trainingsdaten-Erhebung über **OpenStreetMap** + **Mapillary**, Annotation via **Roboflow**, Training via **Google Colab** + **Ultralytics YOLOv8**, Export nach **TensorFlow Lite**. Details: [kurzbeschreibung.md](kurzbeschreibung.md).
-Der Fokus dieses Experiments lag auf der **vollständigen Automatisierung des Entwicklungs- und Datenprozesses durch KI** anstelle von Handarbeit:
+App Generierung aus Prompt Spezifikationen via **Google Antigravity**, automatisierte Trainingsdaten Erhebung über **OpenStreetMap** + **Mapillary**, Annotation via **Roboflow**, Training via **Google Colab** + **Ultralytics YOLOv8**, Export nach **TensorFlow Lite**. Der Fokus dieses Experiments lag auf der **vollständigen Automatisierung des Entwicklungs- und Datenprozesses durch KI**:
 
-- **App-Entwicklung per KI (Google Antigravity):** Die Android-App entstand nicht durch manuelles Coden, sondern iterativ durch gezieltes Prompting (siehe [`Prompt 1/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%201/promt1.md), [`Prompt 2/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%202/promt2.md), [`Prompt 3/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%203/promt3.md) im Repository). Der KI-Agent integrierte selbstständig MapLibre, GPS, Kamera, Overpass-API und das TensorFlow-Lite-Modell.
-- **Trainingsdaten auf Knopfdruck:** Das Skript `M3_YOLO_Bootstrap/bootstrap.py` zieht bekannte Briefkästen aus OSM und verknüpft sie automatisch mit passenden **Mapillary-Streetview-Fotos**. 
-- **KI-Modelltraining:** Nach der Annotation in **Roboflow** (114 von 821 Bildern markiert, 70/20/10-Split) wurde ein **YOLOv8n**-Modell in **Google Colab** trainiert und direkt für die App als TensorFlow Lite-Modell exportiert.
-- **Automatisierter Stadt-Scan:** `M3_YOLO_Bootstrap/city_scan.py` wendet das Modell flächendeckend auf Berliner Mapillary-Fotos an und gleicht Treffer live mit OSM ab.
-
+- **App-Entwicklung per KI (Google Antigravity):** Das Baugerüst der Android App entstand nicht durch manuelles Coden, sondern iterativ durch gezieltes Prompting (siehe [`Prompt 1/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%201/promt1.md), [`Prompt 2/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%202/promt2.md), [`Prompt 3/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%203/promt3.md) im Repository). Der KI-Agent integrierte selbstständig MapLibre, GPS, Kamera, Overpass API und das TensorFlow Lite Modell.
+- **Trainingsdaten auf Knopfdruck:** Das Skript `M3_YOLO_Bootstrap/bootstrap.py` zieht bekannte Briefkästen aus OSM und verknüpft sie automatisch mit passenden **Mapillary Streetview Fotos**. 
+- **KI Modelltraining:** Nach der Annotation in **Roboflow** (114 von 821 Bildern markiert, 70/20/10-Split) wurde ein **YOLOv8n**-Modell in **Google Colab** trainiert und direkt für die App als TensorFlow Lite Modell exportiert.
+- **Automatisierter Stadt Scan:** `M3_YOLO_Bootstrap/city_scan.py` wendet das Modell flächendeckend auf Berliner Mapillary-Fotos an und gleicht Treffer live mit OSM ab.
 
 
-# Ergebnis & Grenzen (siehe `doku.md`, Kapitel 8)
 
-Die Pipeline funktioniert nachweislich End-to-End (siehe Screenshots unten): korrektes Erkennen bereits kartierter Briefkästen, korrektes Melden fehlender Briefkästen, und korrekte visuelle Bestätigung per selbst trainiertem Modell (98,7 % Konfidenz bei einem echten Testfoto). Bei nur 114 annotierten Trainingsbildern ist die Generalisierung des Modells auf beliebige Straßenfotos noch begrenzt (dokumentiert in `doku.md`) – ein realistisches, ehrlich reflektiertes Ergebnis für den Umfang dieses Experiments.
+# Ergebnis & Grenzen
+
+Die Pipeline funktioniert nachweislich End to End (siehe Screenshots & Demo): korrektes Erkennen bereits kartierter Briefkästen, Melden fehlender Briefkästen, und visuelle Bestätigung per selbst trainiertem Modell (98,7 % Konfidenz bei einem echten Testfoto). Bei nur 114 annotierten Trainingsbildern ist die Generalisierung des Modells auf beliebige Straßenfotos noch begrenzt (dokumentiert in `doku.md`).
 
