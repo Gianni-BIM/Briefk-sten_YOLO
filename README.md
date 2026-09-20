@@ -1,27 +1,37 @@
 # Kurzbeschreibung Briefkasten Scout App
 
-**Name:** Ioannis Svolos
-**Matrikelnummer:** 906758
-**Modul:** Automatisierte Geodatenprozessierung
+**Name:** Ioannis Svolos  
+**Matrikelnummer:** 906758  
+**Modul:** Automatisierte Geodatenprozessierung  
+**Repository:** [GitHub Link](https://github.com/Gianni-BIM/Briefk-sten_YOLO)
 
-**Repository (Quellcode & ausführbarer Code):** https://github.com/Gianni-BIM/Briefk-sten_YOLO
+---
 
+## Inhaltsverzeichnis
+- [Projektidee](#projektidee)
+- [Funktionsweise im Überblick](#funktionsweise-im-überblick)
+- [Demo-Video](#demo-video)
+- [Projektablauf in Bildern](#projektablauf-in-bildern)
+- [Installation & Ausführung](#installation--ausführung)
+- [Projektstruktur](#projektstruktur)
+- [Die KI-gestützte, automatisierte Prozesskette](#die-ki-gestützte-automatisierte-prozesskette)
+- [Ergebnis & Grenzen](#ergebnis--grenzen)
+---
 
-# Projektidee
+## Projektidee
 
-Android App, die vor Ort fotografierte Briefkästen (`amenity=post_box`) automatisch gegen OpenStreetMap abgleicht (Overpass API) und zusätzlich per selbst trainiertem YOLO Modell direkt auf dem Gerät erkennt, ob tatsächlich ein Briefkasten im Foto zu sehen ist.
+Die Briefkasten Scout App erfasst vor Ort fotografierte Briefkästen (OSM-Tag: `amenity=post_box`), vergleicht diese automatisch mit OpenStreetMap Daten via Overpass API und validiert das Foto zusätzlich mit einem lokal laufenden, selbst trainierten YOLO Modell zur Objekterkennung. Damit deckt die App den gesamten Workflow von der Vor-Ort Erfassung bis zur automatisierten OSM-Validierung ab.
 
-Die **Briefkasten Scout** App bildet den kompletten Prozess von der Vor-Ort Erfassung bis zur automatisierten Validierung gegen OpenStreetMap ab:
+Der Prozess von der Erfassung bis zur OSM Validierung läuft so ab:
 
-1. Foto + präzise GPS-Position werden vor Ort aufgenommen.
-2. Eine automatisierte **Overpass API Abfrage** prüft im Hintergrund, ob an dieser Position bereits ein Briefkasten in OSM erfasst ist (MATCH / MISSING / ERROR).
-3. Ein selbst trainiertes **YOLO Modell** läuft direkt auf dem Gerät (TensorFlow Lite) und prüft unabhängig davon, ob auf dem Foto tatsächlich ein Briefkasten zu sehen ist.
-4. Die aussagekräftigste Kombination: **MISSING + visuell bestätigt** markiert eine mit Foto belegte, echte potentielle Kartierungslücke in OSM.
+1. **Erfassen:** Foto und präzise GPS Position werden vor Ort aufgenommen.
+2. **OSM Abgleich:** Die Overpass API prüft im Hintergrund, ob an diesem Standort bereits ein Briefkasten in OSM existiert (MATCH / MISSING / ERROR).
+3. **KI Check:** Ein selbst trainiertes YOLO Modell läuft direkt auf dem Gerät (via TensorFlow Lite) und prüft, ob auf dem Foto wirklich ein Briefkasten zu sehen ist.
+4. **Ergebnis:** Die Kombination aus **MISSING (in OSM) + visuell bestätigt (durch KI)** deckt potenzielle Kartierungslücken, die durch ein Foto belegt sind.
 
-**Volle technische Doku:** [doku.md](doku.md)
+---
 
-
-# Funktionsweise graphisch dargestellt
+## Funktionsweise im Überblick
 
 ```mermaid
 flowchart LR
@@ -36,36 +46,37 @@ flowchart LR
     G -->|Nein| I["Dokumentiert, keine Aktion"]
 ```
 
+---
 
-# Demo-Video
+## Demo-Video
 
 https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
 
-
-
-# Projektablauf mit Screenshots
 ---
 
-## 1. Roboflow
-**Roboflow: manuelle Bounding-Box Annotation eines Briefkastens im Kandidaten-Foto:**
+## Projektablauf in Bildern
+
+### 1. Datenaufbereitung & KI-Training (Roboflow & Colab)
+
+**manuelle Bounding Box Annotation eines Briefkastens in Roboflow:**
 
 ![Roboflow Annotation](screenshots/Bildschirmfoto%202026-09-19%20um%2022.18.04.png)
 
-**Roboflow: Übersicht des annotierten Datensatzes (114 von 821 Fotos mit Bounding Boxes):**
+**Übersicht des annotierten Datensatzes (114 von 821 Fotos mit Bounding Boxes):**
 
 ![Roboflow Datensatz-Übersicht](screenshots/Bildschirmfoto%202026-09-19%20um%2022.54.32.png)
 
-**Roboflow: automatischer Train/Valid/Test-Split (70/20/10) vor dem Export:**
+**automatischer Train/Valid/Test-Split (70/20/10) vor dem Export:**
 
 ![Roboflow Train/Valid/Test Split](screenshots/Bildschirmfoto%202026-09-19%20um%2022.54.47.png)
 
-**Google Colab: YOLOv8 Training (Ultralytics) und Export nach TensorFlow Lite**:
+**YOLOv8 Training in Google Colab & Export nach TFLite:**
 
 ![Google Colab Training](screenshots/Bildschirmfoto%202026-09-19%20um%2023.24.56.png)
 
+### 2. App-Ergebnisse
 
-## 2. App
-| **Ausgangsmaterial: echtes Foto eines Briefkastens (Datenbasis für Training & Test)** | **Erfolgreicher Testfall: OSM Treffer UND visuelle KI-Erkennung stimmen überein (98,7 % Konfidenz)** |
+| **Ausgangsmaterial: Echtes Foto eines Briefkastens (Datenbasis für Training & Test)** | **Erfolgreicher Testfall: OSM Treffer UND visuelle KI-Erkennung stimmen überein (98,7 % Konfidenz)** |
 |---|---|
 | <img width="369" alt="Bildschirmfoto 2026-09-20 um 03 37 40 Kopie" src="https://github.com/user-attachments/assets/a8f03ef4-40b7-4ca8-898e-75ea47a9b80a" /> | ![MATCH + visuell erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.21.20.png) |
 
@@ -73,50 +84,49 @@ https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
 |---|---|
 | ![Foto ohne Briefkasten](screenshots/Bildschirmfoto%202026-09-20%20um%2003.37.50.png) | ![MISSING + nicht erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.22.17.png) |
 
-
 **Vergleich zweier Testfälle nebeneinander: MATCH (grün) vs. MISSING + nicht erkannt (rot), inkl. GPS-Steuerung im Emulator:**
-
 ![Vergleich zweier Testfälle](screenshots/Bildschirmfoto%202026-09-20%20um%2004.22.40.png)
 
+---
 
+## Installation & Ausführung
 
-## Ausführbare APK
+**Ausführbare APK:**  
+Die fertig kompilierte Debug APK gibt es unter [GitHub Releases](https://github.com/Gianni-BIM/Briefk-sten_YOLO/releases) (nicht im Repo da > 50 MB).
 
-Fertig kompilierte Debug APK zum Installieren: [GitHub Release](https://github.com/Gianni-BIM/Briefk-sten_YOLO/releases) (nicht im Repo selbst, da > 50 MB).
-
-## Bauen aus dem Quellcode
-
+**Bauen aus dem Quellcode:**
 ```bash
 cd BriefkastenScout
 ./gradlew assembleDebug
 ```
+*Alternativ:* Den Ordner `BriefkastenScout/` direkt in Android Studio öffnen.
 
-Oder direkt in Android Studio: Ordner `BriefkastenScout/` öffnen.
+---
 
 ## Projektstruktur
 
-```
-├── BriefkastenScout/     # Android-App (Java) inkl. trainiertem TFLite-Modell
-├── M3_YOLO_Bootstrap/    # Trainingsdaten Pipeline (OSM + Mapillary + Colab Training)
-├── Prompt 1–3/           # Spezifikationen je Ausbaustufe
-├── screenshots/          # Alle App und Trainings Screenshots
-├── doku.md               # Vollständige technische Dokumentation
-└── kurzbeschreibung.md   # Kurzbeschreibung, Projektskizze, KI Prozesskette
+```text
+├── BriefkastenScout/     # Android-App (Java) inkl. TFLite-Modell
+├── M3_YOLO_Bootstrap/    # Pipeline für Trainingsdaten (OSM + Mapillary + Colab)
+├── Prompt 1–3/           # KI-Prompts je Ausbaustufe
+├── screenshots/          # Alle Bilder für die Doku
 ```
 
+---
 
-# Die KI-gestützte automatisierte Prozesskette
+## Die KI-gestützte automatisierte Prozesskette
 
-App Generierung aus Prompt Spezifikationen via **Google Antigravity**, automatisierte Trainingsdaten Erhebung über **OpenStreetMap** + **Mapillary**, Annotation via **Roboflow**, Training via **Google Colab** + **Ultralytics YOLOv8**, Export nach **TensorFlow Lite**. Der Fokus dieses Experiments lag auf der **vollständigen Automatisierung des Entwicklungs- und Datenprozesses durch KI**:
+App Generierung aus Prompt Spezifikationen via Google Antigravity, automatisierte Trainingsdaten Erhebung über OpenStreetMap + Mapillary, Annotation via Roboflow, Training via Google Colab + Ultralytics YOLOv8, Export nach TensorFlow Lite. Der Fokus dieses Experiments lag auf der vollständigen Automatisierung des Entwicklungs- und Datenprozesses durch KI:
 
-- **App-Entwicklung per KI (Google Antigravity):** Das Baugerüst der Android App entstand nicht durch manuelles Coden, sondern iterativ durch gezieltes Prompting (siehe [`Prompt 1/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%201/promt1.md), [`Prompt 2/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%202/promt2.md), [`Prompt 3/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%203/promt3.md) im Repository). Der KI-Agent integrierte selbstständig MapLibre, GPS, Kamera, Overpass API und das TensorFlow Lite Modell.
-- **Trainingsdaten auf Knopfdruck:** Das Skript `M3_YOLO_Bootstrap/bootstrap.py` zieht bekannte Briefkästen aus OSM und verknüpft sie automatisch mit passenden **Mapillary Streetview Fotos**. 
-- **KI Modelltraining:** Nach der Annotation in **Roboflow** (114 von 821 Bildern markiert, 70/20/10-Split) wurde ein **YOLOv8n**-Modell in **Google Colab** trainiert und direkt für die App als TensorFlow Lite Modell exportiert.
-- **Automatisierter Stadt Scan:** `M3_YOLO_Bootstrap/city_scan.py` wendet das Modell flächendeckend auf Berliner Mapillary-Fotos an und gleicht Treffer live mit OSM ab.
+- **App Entwicklung per KI (Google Antigravity):** Das Baugerüst der Android App entstand iterativ durch gezieltes Prompting (siehe [`Prompt 1/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%201/promt1.md), [`Prompt 2/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%202/promt2.md), [`Prompt 3/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%203/promt3.md)). Der Agent integrierte selbstständig MapLibre, GPS, Kamera, Overpass-API und das TensorFlow Lite Modell.
+- **Trainingsdaten auf Knopfdruck:** Das Skript `M3_YOLO_Bootstrap/bootstrap.py` zieht bekannte Briefkästen aus OSM und verknüpft sie automatisch mit passenden **Mapillary-Streetview-Fotos**.
+- **KI Modelltraining:** Nach der Annotation in **Roboflow** (114 Bilder, 70/20/10-Split) wurde ein **YOLOv8n**-Modell in **Google Colab** trainiert und als TensorFlow Lite Modell exportiert.
+- **Automatisierter Stadt Scan:** `M3_YOLO_Bootstrap/city_scan.py` wendet das Modell flächendeckend auf Berliner Mapillary Fotos an und gleicht Treffer direkt mit OSM ab.
 
+---
 
+## Ergebnis & Grenzen
 
-# Ergebnis & Grenzen
+Die Pipeline funktioniert End-to-End: Briefkästen werden erkannt, mit OSM abgeglichen und visuell durch die KI bestätigt (bis zu 98,7 % Konfidenz beim echten Testfoto). 
 
-Die Pipeline funktioniert nachweislich End to End (siehe Screenshots & Demo): korrektes Erkennen bereits kartierter Briefkästen, Melden fehlender Briefkästen, und visuelle Bestätigung per selbst trainiertem Modell (98,7 % Konfidenz bei einem echten Testfoto). Bei nur 114 annotierten Trainingsbildern ist die Generalisierung des Modells auf beliebige Straßenfotos noch begrenzt (dokumentiert in `doku.md`).
-
+Da das Modell mit nur 114 Bildern trainiert wurde, ist die Generalisierung auf neue, ungesehene Umgebungen naturgemäß noch begrenzt. Für dieses Proof of Concept ist es jedoch ein sehr erfolgreiches Ergebnis.
