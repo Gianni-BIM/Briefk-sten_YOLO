@@ -39,14 +39,14 @@ flowchart LR
 
 # Die KI-gestützte, automatisierte Prozesskette
 
+App-Generierung aus Prompt-Spezifikationen via **Google Antigravity**, automatisierte Trainingsdaten-Erhebung über **OpenStreetMap** + **Mapillary**, Annotation via **Roboflow**, Training via **Google Colab** + **Ultralytics YOLOv8**, Export nach **TensorFlow Lite**. Details: [kurzbeschreibung.md](kurzbeschreibung.md).
 Der Fokus dieses Experiments lag auf der **vollständigen Automatisierung des Entwicklungs- und Datenprozesses durch KI** anstelle von Handarbeit:
 
-- **App-Entwicklung per KI (Google Antigravity):** Die Android-App entstand nicht durch manuelles Coden, sondern iterativ durch gezieltes Prompting (siehe `Prompt 1/`, `Prompt 2/`, `Prompt 3/` im Repository). Der KI-Agent integrierte selbstständig MapLibre, GPS, Kamera, Overpass-API und das TensorFlow-Lite-Modell.
-- **Trainingsdaten auf Knopfdruck:** Das Skript `M3_YOLO_Bootstrap/bootstrap.py` zieht bekannte Briefkästen aus OSM und verknüpft sie automatisch mit passenden **Mapillary-Streetview-Fotos**. Manuelles Fotografieren vor Ort entfällt komplett.
+- **App-Entwicklung per KI (Google Antigravity):** Die Android-App entstand nicht durch manuelles Coden, sondern iterativ durch gezieltes Prompting (siehe [`Prompt 1/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%201/promt1.md), [`Prompt 2/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%202/promt2.md), [`Prompt 3/`](https://github.com/Gianni-BIM/Briefk-sten_YOLO/blob/main/Prompt%203/promt3.md) im Repository). Der KI-Agent integrierte selbstständig MapLibre, GPS, Kamera, Overpass-API und das TensorFlow-Lite-Modell.
+- **Trainingsdaten auf Knopfdruck:** Das Skript `M3_YOLO_Bootstrap/bootstrap.py` zieht bekannte Briefkästen aus OSM und verknüpft sie automatisch mit passenden **Mapillary-Streetview-Fotos**. 
 - **KI-Modelltraining:** Nach der Annotation in **Roboflow** (114 von 821 Bildern markiert, 70/20/10-Split) wurde ein **YOLOv8n**-Modell in **Google Colab** trainiert und direkt für die App als TensorFlow Lite-Modell exportiert.
-- **Automatisierter Stadt-Scan:** `M3_YOLO_Bootstrap/city_scan.py` wendet das Modell flächendeckend auf Berliner Mapillary-Fotos an und gleicht Treffer live mit OSM ab. Ein Proof-of-Concept, um Kartierungslücken im großen Stil direkt vom Schreibtisch aus zu finden.
+- **Automatisierter Stadt-Scan:** `M3_YOLO_Bootstrap/city_scan.py` wendet das Modell flächendeckend auf Berliner Mapillary-Fotos an und gleicht Treffer live mit OSM ab.
 
-Damit deckt das Projekt die gesamte geforderte Kette ab – von der per KI generierten GeoIT-App bis zur automatisierten Objekterkennung (On-Device).
 
 
 # Ergebnis & Grenzen (siehe `doku.md`, Kapitel 8)
