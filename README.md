@@ -72,20 +72,20 @@ Weitere Screenshots (Kartenansicht, Fehlerfall + Retry): Ordner [`screenshots/`]
 
 ## Projektablauf mit Screenshots
 
-**Roboflow – manuelle Bounding-Box-Annotation eines Briefkastens im Kandidaten-Foto:**
+**Roboflow: manuelle Bounding-Box-Annotation eines Briefkastens im Kandidaten-Foto:**
 ![Roboflow Annotation](screenshots/Bildschirmfoto%202026-09-19%20um%2022.18.04.png)
 
-**Roboflow – Übersicht des annotierten Datensatzes (114 von 821 Fotos mit Bounding Boxes):**
+**Roboflow: Übersicht des annotierten Datensatzes (114 von 821 Fotos mit Bounding Boxes):**
 ![Roboflow Datensatz-Übersicht](screenshots/Bildschirmfoto%202026-09-19%20um%2022.54.32.png)
 
-**Roboflow – automatischer Train/Valid/Test-Split (70/20/10) vor dem Export:**
+**Roboflow: automatischer Train/Valid/Test-Split (70/20/10) vor dem Export:**
 ![Roboflow Train/Valid/Test Split](screenshots/Bildschirmfoto%202026-09-19%20um%2022.54.47.png)
 
-**Google Colab – YOLOv8-Training (Ultralytics) und Export nach TensorFlow Lite** (API-Key im Screenshot geschwärzt):
+**Google Colab: YOLOv8-Training (Ultralytics) und Export nach TensorFlow Lite** (API-Key im Screenshot geschwärzt):
 ![Google Colab Training](screenshots/Bildschirmfoto%202026-09-19%20um%2023.24.56.png)
 
 **Ausgangsmaterial – echtes Foto eines Briefkastens (Datenbasis für Training & Test):**
-![Echtes Briefkasten-Foto](screenshots/Bildschirmfoto%202026-09-20%20um%2003.37.40.png)
+![Echtes Briefkasten-Foto](screenshots/Bildschirmfoto%2026-09-20%um%03.37.40%Kopie.png)
 
 **Erfolgreicher Testfall – OSM-Treffer UND visuelle KI-Erkennung stimmen überein (98,7 % Konfidenz):**
 ![MATCH + visuell erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.21.20.png)
