@@ -80,21 +80,14 @@ https://github.com/user-attachments/assets/0ddc83bf-0356-4cb1-aaa3-94103d4733f0
 
 
 ## 2. App
-| **Ausgangsmaterial: echtes Foto eines Briefkastens (Datenbasis für Training & Test):** | **Erfolgreicher Testfall: OSM Treffer UND visuelle KI-Erkennung stimmen überein (98,7 % Konfidenz):** |
+| **Ausgangsmaterial: echtes Foto eines Briefkastens (Datenbasis für Training & Test)** | **Erfolgreicher Testfall: OSM Treffer UND visuelle KI-Erkennung stimmen überein (98,7 % Konfidenz)** |
 |---|---|
 | <img width="369" alt="Bildschirmfoto 2026-09-20 um 03 37 40 Kopie" src="https://github.com/user-attachments/assets/a8f03ef4-40b7-4ca8-898e-75ea47a9b80a" /> | ![MATCH + visuell erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.21.20.png) |
 
-| **Ausgangsmaterial: Foto ohne Briefkasten (Negativtest):** | **Negativtest: OSM UND visuelle Erkennung stimmen korrekt überein (kein Briefkasten):** |
+| **Ausgangsmaterial: Foto ohne Briefkasten (Negativtest)** | **Negativtest: OSM UND visuelle Erkennung stimmen korrekt überein (kein Briefkasten)** |
 |---|---|
 | ![Foto ohne Briefkasten](screenshots/Bildschirmfoto%202026-09-20%20um%2003.37.50.png) | ![MISSING + nicht erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.22.17.png) |
 
-**Ausgangsmaterial: echtes Foto eines Briefkastens (Datenbasis für Training & Test):**
-
-<img width="369" height="795" alt="Bildschirmfoto 2026-09-20 um 03 37 40 Kopie" src="https://github.com/user-attachments/assets/a8f03ef4-40b7-4ca8-898e-75ea47a9b80a" />
-
-**Erfolgreicher Testfall: OSM Treffer UND visuelle KI-Erkennung stimmen überein (98,7 % Konfidenz):**
-
-![MATCH + visuell erkannt](screenshots/Bildschirmfoto%202026-09-20%20um%2004.21.20.png)
 
 **Vergleich zweier Testfälle nebeneinander: MATCH (grün) vs. MISSING + nicht erkannt (rot), inkl. GPS-Steuerung im Emulator:**
 
